@@ -3,12 +3,12 @@
 Blockbuster is a series of API mods that offer features from the Balatro Goes Kino mod as stand-alone packages. They're set up to support other mods' use of these features without needing to also interact with Balatro Goes Kino's themes and playable content. 
 
 Blockbuster Mods:
-Balatro Goes Kino (Source Content mod)
-Blockbuster: Counters 
-Blockbuster: Spellcasting (Not Yet Released)
-Blockbuster: Confections (Not Yet Released)
-Blockbuster: Abduction (Not Yet Released)
-Blockbuster: Value Manipulation (Not Yet Released)
+- Balatro Goes Kino (Source Content mod)
+- Blockbuster: Counters 
+- Blockbuster: Spellcasting (Not Yet Released)
+- Blockbuster: Confections (Not Yet Released)
+- Blockbuster: Abduction (Not Yet Released)
+- Blockbuster: Value Manipulation (Not Yet Released)
 
 Mods that use Blockbuster: Counters
 NONE (I just released this)
