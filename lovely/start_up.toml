@@ -1,0 +1,68 @@
+[manifest]
+version = "1.0.0"
+dump_lua = true
+priority = 0
+
+## Add globals
+[[patches]]
+[patches.pattern]
+target = "game.lua"
+pattern = '''
+self.shared_seals = {
+    Gold = Sprite(0, 0, self.CARD_W, self.CARD_H, self.ASSET_ATLAS["centers"], {x = 2,y = 0}),
+    Purple = Sprite(0, 0, self.CARD_W, self.CARD_H, self.ASSET_ATLAS["centers"], {x = 4,y = 4}),
+    Red = Sprite(0, 0, self.CARD_W, self.CARD_H, self.ASSET_ATLAS["centers"], {x = 5,y = 4}),
+    Blue = Sprite(0, 0, self.CARD_W, self.CARD_H, self.ASSET_ATLAS["centers"], {x = 6,y = 4}),
+}
+'''
+position = "after"
+payload = '''
+print("testing start up")
+self.P_COUNTERS = {}
+
+
+self.shared_counters_joker = {}
+self.shared_counters_pcard = {}
+
+self.P_CENTER_POOLS.Counter = {}
+'''
+match_indent = true
+
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = '''
+if self.seal then badges[#badges + 1] = string.lower(self.seal)..'_seal' end
+'''
+position = "after"
+payload = '''
+if self.counter then badges[#badges + 1] = self.counter.key end
+'''
+match_indent = true
+
+[[patches]]
+[patches.pattern]
+target = "functions/common_events.lua"
+pattern = '''
+local seal = G.P_SEALS[v] or G.P_SEALS[SMODS.Seal.badge_to_key[v] or '']
+'''
+position = "before"
+payload = '''
+local counter = G.P_COUNTERS[v]
+for _key, _obj in pairs(G.P_COUNTERS) do
+    print(_key)
+end
+print("AND THE CHECKED KEY ==" .. v)
+if counter then
+    print("in here")
+    local t = {key = v, set = 'Counter', config = {}}
+    info_queue[#info_queue + 1] = G.P_COUNTERS[v]
+    if counter.loc_vars and type(counter.loc_vars) == 'function' then
+        local res = counter:loc_vars(info_queue, card) or {}
+        t.vars = res.vars
+        t.key = res.key or t.key
+        t.set = res.set or t.set
+    end
+end
+'''
+match_indent = true
