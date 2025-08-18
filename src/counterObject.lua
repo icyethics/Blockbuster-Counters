@@ -26,8 +26,9 @@ BlockbusterCounters.Counter =  SMODS.GameObject:extend {
             G.ASSET_ATLAS[self.atlas], self.pos)
         
         local sec_pos = self.pos_card or {x = self.pos.x, y = self.pos.y + 1}
+        print(sec_pos)
         G.shared_counters_pcard[self.key] = Sprite(0, 0, G.CARD_W, G.CARD_H,
-            G.ASSET_ATLAS[self.atlas], self.pos_pcard)
+            G.ASSET_ATLAS[self.atlas], sec_pos)
 
         SMODS.insert_pool(G.P_CENTER_POOLS[self.set], self)
         G.P_COUNTERS[self.key] = self
@@ -38,7 +39,9 @@ BlockbusterCounters.Counter =  SMODS.GameObject:extend {
             SMODS.process_loc_text(G.localization.descriptions.Counter, self.key:lower(), self.loc_txt)
     end,
     set_card_type_badge = function(self, card, badges)
-        badges[#badges+1] = create_badge(localize('bbcount_counter'), G.C.PURPLE, G.C.WHITE, 1.2 )
+        if not card.fake_card then
+            badges[#badges+1] = create_badge(localize('bbcount_counter'), G.C.PURPLE, G.C.WHITE, 1.2 )
+        end
     end,
     get_obj = function(self, key) 
         if not G.P_COUNTERS then
@@ -48,16 +51,17 @@ BlockbusterCounters.Counter =  SMODS.GameObject:extend {
     end,
     generate_ui = function(self, info_queue, card, desc_nodes, specific_vars, full_UI_table)
         card = card or self:create_fake_card()
-        print("TESTING IF WE ENTERED THE")
         local _suffix = "_joker"
-        if (card.ability.set ~= 'Default' and card.ability.set ~='Enhanced') then
+        if not card.ability or (card.ability.set ~= 'Default' and card.ability.set ~='Enhanced') then
             _suffix = "_pcard"
+        else
+
         end
 
         local target = {
-            type = 'Counter',
+            type = 'descriptions',
             set = 'Counter',
-            key = self.key:lower() .. _suffix,
+            key = self.key:lower(),
             nodes = desc_nodes,
             AUT = full_UI_table,
             vars = specific_vars or {},
@@ -90,7 +94,16 @@ BlockbusterCounters.Counter =  SMODS.GameObject:extend {
         desc_nodes.background_colour = res.background_colour
     end,
     create_fake_card = function(self)
-        return { ability = {}, fake_card = true }
+        return { 
+            counter = {
+                self.config
+            }, 
+            counter_config = {
+                counter_num = 1,
+                counter_num_ui = 1
+            },
+            fake_card = true
+        }
     end,
     apply_counter = function(self, card)
 

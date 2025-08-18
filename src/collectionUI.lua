@@ -1,15 +1,13 @@
-print("LOADING COLLECTION UI")
 function create_UIBox_counters()
     return SMODS.card_collection_UIBox(G.P_CENTER_POOLS.Counter, {5,5}, {
         snap_back = true,
         infotip = localize('bb_counter_tooltip'),
         hide_single_page = true,
         collapse_single_page = true,
-        center = 'j_joker',
+        center = 'c_base',
         h_mod = 1.03,
         modify_card = function(card, center)
             card:set_counter(center, 1)
-            print(card.counter_config)
         end,
     })
 end

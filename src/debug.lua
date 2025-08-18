@@ -15,32 +15,54 @@ end
 
 SMODS.Keybind({
     key_pressed = "n",
+    held_keys = { "space" },
     action = function(self)
-        print("testkey pressed")
         if G and G.CONTROLLER and G.CONTROLLER.hovering.target and G.CONTROLLER.hovering.target:is(Card) then
             local _card = G.CONTROLLER.hovering.target
 
             for _i, _counter in ipairs(GetCounters()) do
-                if (_card.counter or "None") == _counter then
+                if (_card.counter and _card.counter.key or "None") == _counter then
                     local _next = _i + 1
                     if _next > #counters then
                         _next = 1
                     end
 
                     if _next == 1 then
-                        print("next was 1")
                         _card:set_counter(nil, 0)
                     else
-                        print("next was higher than 1")
-                        print(counters[_next])
-                        timesused = timesused + 1
-                        _card:set_counter(counters[_next], timesused)
+                        _card:set_counter(counters[_next], 1)
                     end
                     break
                 end
             end
         end
 
+    end
+})
+
+SMODS.Keybind({
+    key_pressed = "n",
+    held_keys = { "ralt" },
+    event = 'pressed',
+    action = function(self)
+        print("triggered <")
+        if G and G.CONTROLLER and G.CONTROLLER.hovering.target and G.CONTROLLER.hovering.target:is(Card) then
+            local _card = G.CONTROLLER.hovering.target
+            _card:increment_counter(1)
+        end
+    end
+})
+
+SMODS.Keybind({
+    key_pressed = "n",
+    held_keys = { "lalt" },
+    event = 'pressed',
+    action = function(self)
+        print("triggered >")
+        if G and G.CONTROLLER and G.CONTROLLER.hovering.target and G.CONTROLLER.hovering.target:is(Card) then
+            local _card = G.CONTROLLER.hovering.target
+            _card:increment_counter(-1)
+        end
     end
 })
 

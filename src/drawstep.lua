@@ -73,7 +73,6 @@ SMODS.DrawStep {
         (card.ability.set ~= 'Default' and card.ability.set ~='Enhanced')  then
 
             local _counter = card.counter_config.counter_num_ui + 1
-            if card.counter_config.counter_num_ui >= 10 then _counter = 10 end
 
             -- Sprite
             G["shared_counters_joker"][card.counter.key].role.draw_major = card
@@ -110,7 +109,6 @@ SMODS.DrawStep {
 
 
             local _counter = card.counter_config.counter_num_ui + 1
-            if card.counter_config.counter_num_ui >= 10 then _counter = 10 end
 
             G["shared_counters_pcard"][card.counter.key].role.draw_major = card
             G["shared_counters_pcard"][card.counter.key]:draw_shader('dissolve', nil, nil, nil, card.children.center)

@@ -3,8 +3,12 @@ BlockbusterCounters.mod_dir = ''..SMODS.current_mod.path
 
 BlockbusterCounters_config = SMODS.current_mod.config
 
--- Read in Atlases
+SMODS.current_mod.optional_features = {
+	retrigger_joker = true,
+	post_trigger = true,
+}
 
+-- Read in Atlases
 local atlases = 
 {
     {'blockbuster_counters', 71, 95, 'bbcount_counters.png'},
@@ -12,7 +16,6 @@ local atlases =
 }
 
 for _index, _object in ipairs(atlases) do
-    print(_object[1])
     SMODS.Atlas {
         key = _object[1],
         px = _object[2],
@@ -39,7 +42,6 @@ local _list_of_folders = {
 for _index, _folder in ipairs(_list_of_folders) do
     local files = NFS.getDirectoryItems(BlockbusterCounters.mod_dir .. _folder)
     for _, _filename in ipairs(files) do
-        print(_filename)
         BlockbusterCounters.load_file(_folder .. "/" .. _filename)
     end
 end

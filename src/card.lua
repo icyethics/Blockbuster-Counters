@@ -32,7 +32,7 @@ function Card:set_counter(counter_type, number, operation, no_override)
 
         -- Add_counter action
         local obj = self.counter
-        if obj.add_counter and type(obj.add_counter) == 'function' then
+        if obj and obj.add_counter and type(obj.add_counter) == 'function' then
             local o = obj:add_counter(self, number)
             if o then
                 if not o.card then o.card = self end
@@ -64,8 +64,14 @@ end
 function Card:increment_counter(number)
     if self.counter then
         
-        self.counter_config.counter_num = math.floor(self.counter_config.counter_num + number, self.counter.config.cap or 99)
-        -- INSERT: Counter Increment action
+        self.counter_config.counter_num = math.min(self.counter_config.counter_num + number, self.counter.config.cap or 99)
+        print(self.counter.config.cap)
+        print(self.counter.config.cap or 99)
+        print(math.min(17, 9))
+        print(math.min(8, 9))
+        print(math.min(self.counter_config.counter_num + number, self.counter.config.cap or 99))
+        
+        --Counter Increment action
         local obj = self.counter
         if obj.increment and type(obj.increment) == 'function' then
             local o = obj:increment(self, number)
@@ -77,7 +83,7 @@ function Card:increment_counter(number)
 
         G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.05, func = function()
             self:juice_up()
-            self.counter_config.counter_num_ui = math.floor(self.counter_config.counter_num_ui + number, self.counter.config.cap or 99)
+            self.counter_config.counter_num_ui = math.min(self.counter_config.counter_num_ui + number, self.counter.config.cap or 99)
             if self.counter_config.counter_num_ui <= 0 then
                 self:remove_counter()
             end

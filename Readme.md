@@ -13,6 +13,20 @@ Blockbuster Mods:
 Mods that use Blockbuster: Counters
 - NONE (I just released this)
 
+Counters added by the mod as a default:
+Beneficial Counters:
+- Mult Counters
+- Chips Counters
+- xMult Counters
+- Money Counters
+- Retrigger Counters
+
+Detrimental Counters
+- Debt Counter
+- Poison Counter
+- Stun Counter
+- Fire Counter
+
 Blockbuster: Counters is an API mod that adds a new layer to both playing cards and jokers: Counters. Counters offer design space to add status effects to cards and jokers, as well as timed detrimental effects. They are intended to tick down with each trigger or scoring of the card they're placed on, removing themselves after all counters have been consumed. 
 
 A more detailed documentation will be provided soon.

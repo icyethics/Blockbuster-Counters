@@ -23,6 +23,23 @@ match_indent = true
 
 [[patches]]
 [patches.pattern]
+target = "functions/common_events.lua"
+pattern = '''
+-- TARGET: evaluate your own repetition effects
+'''
+position = "after"
+payload = '''
+if card.counter then
+    local counters = card:calculate_counter(context)
+    if counters then
+        ret.counters = counters
+    end
+end
+'''
+match_indent = true
+
+[[patches]]
+[patches.pattern]
 target = '''=[SMODS _ "src/utils.lua"]'''
 pattern = '''
 for _, key in ipairs({'playing_card', 'enhancement', 'edition', 'seals'}) do
@@ -36,4 +53,5 @@ for _, key in ipairs({'playing_card', 'enhancement', 'edition', 'seals', 'counte
 end
 '''
 match_indent = true
+
 
