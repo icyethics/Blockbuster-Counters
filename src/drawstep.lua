@@ -1,4 +1,5 @@
 function create_UIBbox_counter_tooltip(card)
+
     local textnode = {
         {
             n = G.UIT.R,
@@ -62,6 +63,28 @@ function create_UIBbox_counter_tooltip(card)
     }
 
     return ui
+end
+
+function BlockbusterCounters.counter_ui_text(card)
+    -- card.children.counter_ui_box =
+    local y_val = -1
+    if (card.ability.set == 'Default' or card.ability.set =='Enhanced') then
+        y_val = 1
+    end
+
+    card.children.counter_ui_box = UIBox{
+        definition = create_UIBbox_counter_tooltip(card),
+        config = {
+            align = 'cm',
+            offset ={x=-0.65,y=y_val}, 
+            parent = card,
+            bond = 'Strong',
+        },
+        states = {
+            collide = {can = false},
+            drag = {can = true}
+        }
+    }
 end
 
 SMODS.DrawStep {

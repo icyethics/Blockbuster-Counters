@@ -2,11 +2,19 @@ BlockbusterCounters.Counter {
     key = "retrigger_counter",
     order = 4,
     atlas = 'blockbuster_counters',
+    pos = {x = 0, y = 0},
     config = {
         retriggers = 1,
         cap = 9,
     },
-    pos = {x = 0, y = 0},
+    loc_vars = function(self, info_queue, card)
+        print(card.counter_config)
+        return {
+            vars = {
+                self.config.retriggers
+            }
+        }
+    end,
     calculate = function(self, card, context)
         if card.ability.set ~= 'Joker' 
         and context.repetition then
@@ -36,13 +44,6 @@ BlockbusterCounters.Counter {
                 repetitions = _retriggers
             }
         end
-    end,
-    loc_vars = function(self, info_queue, card)
-        return {
-            vars = {
-                self.config.retriggers
-            }
-        }
     end,
     increment = function(self, card, number)
     end,

@@ -29,23 +29,7 @@ function Card:bb_counter_apply(counter_type, number, operation, no_override)
         -- Set new counter type
         self.counter = counter_type
 
-        local y_val = -1
-        if (self.ability.set == 'Default' or self.ability.set =='Enhanced') then
-            y_val = 1
-        end
-        self.children.counter_ui_box = UIBox{
-            definition = create_UIBbox_counter_tooltip(self),
-            config = {
-                align = 'cm',
-                offset ={x=-0.65,y=y_val}, 
-                parent = self,
-                bond = 'Strong',
-            },
-            states = {
-                collide = {can = false},
-                drag = {can = true}
-            }
-        }
+        BlockbusterCounters.counter_ui_text(self)
 
         -- Copy config table from template to _object
         self.ability.counter = {}
@@ -73,16 +57,6 @@ function Card:bb_counter_apply(counter_type, number, operation, no_override)
         self.counter_config.counter_num = math.floor(self.counter_config.counter_num * number)
         self.counter_config.counter_num_ui = math.floor(self.counter_config.counter_num_ui * number)
     end
-
-    -- G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.05, func = function()
-    --     self:juice_up()
-    --     self.ability.kino_numcounters = self.ability.kino_numcounters - 1
-    --     if self.ability.kino_numcounters <= 0 then
-    --         self:set_multiplication_bonus(self, "kino_powercounter", 1, nil, 1 + 1)
-    --         self.ability.kino_numcounters = 0
-    --         self.ability.kino_counter = nil
-    --     end
-    -- return true end }))
 
 end
 
