@@ -1,5 +1,6 @@
 BlockbusterCounters.Counter {
     key = "mult_counter",
+    prefix_config = {key = { mod = false}},
     order = 1,
     atlas = 'blockbuster_counters',
     config = {
@@ -33,6 +34,7 @@ BlockbusterCounters.Counter {
 
 BlockbusterCounters.Counter {
     key = "chip_counter",
+    prefix_config = {key = { mod = false}},
     order = 2,
     atlas = 'blockbuster_counters',
     config = {
@@ -65,6 +67,7 @@ BlockbusterCounters.Counter {
 
 BlockbusterCounters.Counter {
     key = "xmult_counter",
+    prefix_config = {key = { mod = false}},
     order = 3,
     atlas = 'blockbuster_counters',
     config = {

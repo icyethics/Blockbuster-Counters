@@ -1,7 +1,9 @@
 BlockbusterCounters.Counter {
     key = "burn_counter",
+    prefix_config = {key = { mod = false}},
     order = 6,
     atlas = 'blockbuster_counters',
+    
     pos = {x = 4, y = 2},
 
     config = {
@@ -38,6 +40,7 @@ BlockbusterCounters.Counter {
 
 BlockbusterCounters.Counter {
     key = "frost_counter",
+    prefix_config = {key = { mod = false}},
     order = 8,
     atlas = 'blockbuster_counters',
     pos = {x = 5, y = 2},
@@ -72,6 +75,7 @@ BlockbusterCounters.Counter {
 
 BlockbusterCounters.Counter {
     key = "paralysis_counter",
+    prefix_config = {key = { mod = false}},
     order = 7,
     atlas = 'blockbuster_counters',
     pos = {x = 6, y = 2},
@@ -114,6 +118,7 @@ BlockbusterCounters.Counter {
 
 BlockbusterCounters.Counter {
     key = "sleep_counter",
+    prefix_config = {key = { mod = false}},
     order = 7,
     atlas = 'blockbuster_counters',
     pos = {x = 7, y = 2},
@@ -151,6 +156,7 @@ BlockbusterCounters.Counter {
 
 BlockbusterCounters.Counter {
     key = "drowsy_counter",
+    prefix_config = {key = { mod = false}},
     order = 7,
     atlas = 'blockbuster_counters',
     pos = {x = 8, y = 2},
@@ -169,7 +175,7 @@ BlockbusterCounters.Counter {
     calculate = function(self, card, context)
         if context.main_scoring or context.joker_main then
             if SMODS.pseudorandom_probability(card, 'bb_drowsy', card.counter_config.counter_num, self.config.chance, "card_transform") then
-                card:bb_counter_apply("bbcount_sleep_counter", card.counter_config.counter_num)
+                card:bb_counter_apply("counter_bbcount_sleep_counter", card.counter_config.counter_num)
             else
                 card:bb_increment_counter(1)
             end

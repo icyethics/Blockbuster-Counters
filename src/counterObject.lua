@@ -2,10 +2,8 @@ BlockbusterCounters.Counters = {}
 BlockbusterCounters.Counter =  SMODS.GameObject:extend {
     obj_table = BlockbusterCounters.Counters,
     obj_buffer = {},
-    -- Figure out what this is used for
+    class_prefix = "counter",
     rng_buffer = {},
-    -- Figure out what this is used for
-    badge_to_key = {},
     set = "Counter",
 
     atlas = 'blockbuster_counters',

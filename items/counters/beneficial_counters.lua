@@ -1,5 +1,6 @@
 BlockbusterCounters.Counter {
     key = "retrigger_counter",
+    prefix_config = {key = { mod = false}},
     order = 4,
     atlas = 'blockbuster_counters',
     pos = {x = 0, y = 0},
@@ -9,6 +10,7 @@ BlockbusterCounters.Counter {
     },
     loc_vars = function(self, info_queue, card)
         print(card.counter_config)
+        print(self.key)
         return {
             vars = {
                 self.config.retriggers
@@ -55,6 +57,7 @@ BlockbusterCounters.Counter {
 
 BlockbusterCounters.Counter {
     key = "investment_counter",
+    prefix_config = {key = { mod = false}},
     order = 5,
     atlas = 'blockbuster_counters',
     pos = {x = 1, y = 0},
@@ -88,6 +91,7 @@ BlockbusterCounters.Counter {
 
 BlockbusterCounters.Counter {
     key = "money_counter",
+    prefix_config = {key = { mod = false}},
     order = 5,
     atlas = 'blockbuster_counters',
     pos = {x = 3, y = 2},

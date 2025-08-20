@@ -1,5 +1,6 @@
 BlockbusterCounters.Counter {
     key = "poison_counter",
+    prefix_config = {key = { mod = false}},
     order = 6,
     atlas = 'blockbuster_counters',
     pos = {x = 7, y = 0},
@@ -36,6 +37,7 @@ BlockbusterCounters.Counter {
 
 BlockbusterCounters.Counter {
     key = "stun_counter",
+    prefix_config = {key = { mod = false}},
     order = 8,
     atlas = 'blockbuster_counters',
     pos = {x = 4, y = 0},
@@ -70,6 +72,7 @@ BlockbusterCounters.Counter {
 
 BlockbusterCounters.Counter {
     key = "debt_counter",
+    prefix_config = {key = { mod = false}},
     order = 7,
     atlas = 'blockbuster_counters',
     pos = {x = 5, y = 0},

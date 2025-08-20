@@ -41,6 +41,33 @@ return {
                     "per Counter"
                 }
             },
+            counter_bbcount_retrigger_counter = {
+                name = "Retrigger Counter (Yes mod / yes class)",
+                text = {
+                    "{C:attention}Ticks Down 1",
+                    " ",
+                    "Retrigger {C:attention}#1#{} time",
+                    "per Counter"
+                }
+            },
+            retrigger_counter = {
+                name = "Retrigger Counter (No mod / no class)",
+                text = {
+                    "{C:attention}Ticks Down 1",
+                    " ",
+                    "Retrigger {C:attention}#1#{} time",
+                    "per Counter"
+                }
+            },
+            counter_retrigger_counter = {
+                name = "Retrigger Counter (No mod / yes class)",
+                text = {
+                    "{C:attention}Ticks Down 1",
+                    " ",
+                    "Retrigger {C:attention}#1#{} time",
+                    "per Counter"
+                }
+            },
             bbcount_money_counter = {
                 name = "Money Counter",
                 text = {
