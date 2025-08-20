@@ -1,92 +1,104 @@
--- BlockbusterCounters.Counter {
---     key = "mult_counter",
---     order = 1,
---     atlas = 'blockbuster_counters',
---     config = {
---         mult = 1
---     },
---     pos = {x = 0, y = 2},
---     calculate = function(self, card, context)
---         if context.main_scoring then
---             card:increment_counter(-1)
---             return {
---                 mult = card.counter_config.counter_num + self.config.mult
---             }
---         end
---     end,
---     loc_vars = function(self, info_queue, card)
---         return {
---             vars = {
---                 self.config.mult
---             }
---         }
---     end,
---     increment = function(self, card, number)
---     end,
---     add_counter = function(self, card, number)
---     end,
---     remove_counter = function(self, card)
---     end,
--- }
+BlockbusterCounters.Counter {
+    key = "poison_counter",
+    order = 6,
+    atlas = 'blockbuster_counters',
+    pos = {x = 7, y = 0},
 
--- BlockbusterCounters.Counter {
---     key = "chip_counter",
---     order = 2,
---     atlas = 'blockbuster_counters',
---     config = {
---         chips = 10
---     },
---     pos = {x = 1, y = 2},
---         calculate = function(self, card, context)
---         if context.main_scoring then
---             card:increment_counter(-1)
---             return {
---                 chips = card.counter_config.counter_num + self.config.chips
---             }
---         end
---     end,
---     loc_vars = function(self, info_queue, card)
---         return {
---             vars = {
---                 self.config.chips
---             }
---         }
---     end,
---     increment = function(self, card, number)
---     end,
---     add_counter = function(self, card, number)
---     end,
---     remove_counter = function(self, card)
---     end,
--- }
+    config = {
+        percentage = 0.05,
+        cap = 9
+    },
+    loc_vars = function(self, info_queue, card)
+        return {
+            vars = {
+                self.config.percentage * 100
+            }
+        }
+    end,
+    calculate = function(self, card, context)
+        if context.main_scoring or context.joker_main then
+            local mult = mult * (card.counter_config.counter_num * (self.config.percentage))
+            local chips = hand_chips * (card.counter_config.counter_num * (self.config.percentage))
+            card:bb_increment_counter(-1)
+            return {
+                mult = -mult, 
+                chips = -chips
+            }
+        end
+    end,
+    increment = function(self, card, number)
+    end,
+    add_counter = function(self, card, number)
+    end,
+    remove_counter = function(self, card)
+    end,
+}
 
--- BlockbusterCounters.Counter {
---     key = "xmult_counter",
---     order = 3,
---     atlas = 'blockbuster_counters',
---     config = {
---         xmult = 0.1
---     },
---     pos = {x = 2, y = 2},
---     calculate = function(self, card, context)
---         if context.main_scoring then
---             card:increment_counter(-1)
---             return {
---                 x_mult = 1 + (card.counter_config.counter_num * 0.1)
---             }
---         end
---     end,
---     loc_vars = function(self, info_queue, card)
---         return {
---             vars = {
---                 self.config.xmult
---             }
---         }
---     end,
---     increment = function(self, card, number)
---     end,
---     add_counter = function(self, card, number)
---     end,
---     remove_counter = function(self, card)
---     end,
--- }
+BlockbusterCounters.Counter {
+    key = "stun_counter",
+    order = 8,
+    atlas = 'blockbuster_counters',
+    pos = {x = 4, y = 0},
+    config = {
+        
+    },
+    loc_vars = function(self, info_queue, card)
+        return {
+            vars = {
+                
+            }
+        }
+    end,
+
+    calculate = function(self, card, context)
+        if context.after_debuff and context.ignore_debuff then
+            card:bb_increment_counter(-1)
+        end
+    end,
+
+    increment = function(self, card, number)
+
+    end,
+    add_counter = function(self, card, number)
+        SMODS.debuff_card(card, true, self.key)
+    end,
+    remove_counter = function(self, card)
+        SMODS.debuff_card(card, false, self.key)
+    end,
+}
+
+
+BlockbusterCounters.Counter {
+    key = "debt_counter",
+    order = 7,
+    atlas = 'blockbuster_counters',
+    pos = {x = 5, y = 0},
+    config = {
+        money = 1,
+        cap = 9
+    },
+    loc_vars = function(self, info_queue, card)
+        return {
+            vars = {
+                self.config.money
+            }
+        }
+    end,
+
+    calculate = function(self, card, context)
+        if context.main_scoring or context.joker_main then
+            local return_val = card.counter_config.counter_num + self.config.money
+            card:bb_increment_counter(-1)
+            return {
+                dollars = -return_val
+            }
+        end
+    end,
+
+    increment = function(self, card, number)
+    end,
+    add_counter = function(self, card, number)
+    end,
+    remove_counter = function(self, card)
+    end,
+}

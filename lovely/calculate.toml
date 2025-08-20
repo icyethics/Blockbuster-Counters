@@ -13,7 +13,7 @@ pattern = '''
 position = "after"
 payload = '''
 if card.counter then
-    local counters = card:calculate_counter(context)
+    local counters = card:bb_calculate_counter(context)
     if counters then
         ret.counters = counters
     end
@@ -30,7 +30,7 @@ pattern = '''
 position = "after"
 payload = '''
 if card.counter then
-    local counters = card:calculate_counter(context)
+    local counters = card:bb_calculate_counter(context)
     if counters then
         ret.counters = counters
     end
@@ -54,4 +54,31 @@ end
 '''
 match_indent = true
 
+
+[[patches]]
+[patches.pattern]
+target = "functions/state_events.lua"
+pattern = '''
+-- TARGET: effects after hand evaluation
+'''
+position = "at"
+payload = '''
+SMODS.calculate_context({full_hand = G.play.cards, scoring_hand = scoring_hand, scoring_name = text, poker_hands = poker_hands, after_debuff = true, ignore_debuff = true})
+'''
+match_indent = true
+
+[[patches]]
+[patches.pattern]
+target = '''=[SMODS _ "src/utils.lua"]'''
+pattern = '''
+-- TARGET : Add extra conditions here
+'''
+position = "at"
+payload = '''
+if is_available == true then
+    is_available = (not self.bb_paralysis or ignore_debuff)
+end
+
+'''
+match_indent = true
 

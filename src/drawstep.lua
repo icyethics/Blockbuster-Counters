@@ -72,28 +72,9 @@ SMODS.DrawStep {
         card.counter_config.counter_num_ui > 0 and 
         (card.ability.set ~= 'Default' and card.ability.set ~='Enhanced')  then
 
-            local _counter = card.counter_config.counter_num_ui + 1
-
             -- Sprite
             G["shared_counters_joker"][card.counter.key].role.draw_major = card
             G["shared_counters_joker"][card.counter.key]:draw_shader('dissolve', nil, nil, nil, card.children.center)
-        
-            -- Text box
-            if not card.children.counter_ui_box then
-                card.children.counter_ui_box = UIBox{
-                    definition = create_UIBbox_counter_tooltip(card),
-                    config = {
-                        align = 'cm',
-                        offset ={x=-0.65,y=-1}, 
-                        parent = card,
-                        bond = 'Strong',
-                    },
-                    states = {
-                        collide = {can = false},
-                        drag = {can = true}
-                    }
-                }
-            end
         end
     end,
     conditions = {vortex = false, facing = 'front'}
@@ -107,28 +88,8 @@ SMODS.DrawStep {
         card.counter_config.counter_num_ui > 0 and 
         (card.ability.set == 'Default' or card.ability.set =='Enhanced')  then
 
-
-            local _counter = card.counter_config.counter_num_ui + 1
-
             G["shared_counters_pcard"][card.counter.key].role.draw_major = card
             G["shared_counters_pcard"][card.counter.key]:draw_shader('dissolve', nil, nil, nil, card.children.center)
-        
-            -- Text box
-            if not card.children.counter_ui_box then
-                card.children.counter_ui_box = UIBox{
-                    definition = create_UIBbox_counter_tooltip(card),
-                    config = {
-                        align = 'cm',
-                        offset ={x=-0.65,y=1}, 
-                        parent = card,
-                        bond = 'Strong',
-                    },
-                    states = {
-                        collide = {can = false},
-                        drag = {can = true}
-                    }
-                }
-            end
         end
     end,
     conditions = {vortex = false, facing = 'front'}

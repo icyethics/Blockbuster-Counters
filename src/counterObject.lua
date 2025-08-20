@@ -26,7 +26,6 @@ BlockbusterCounters.Counter =  SMODS.GameObject:extend {
             G.ASSET_ATLAS[self.atlas], self.pos)
         
         local sec_pos = self.pos_card or {x = self.pos.x, y = self.pos.y + 1}
-        print(sec_pos)
         G.shared_counters_pcard[self.key] = Sprite(0, 0, G.CARD_W, G.CARD_H,
             G.ASSET_ATLAS[self.atlas], sec_pos)
 

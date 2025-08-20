@@ -1,4 +1,4 @@
-function Card:set_counter(counter_type, number, operation, no_override)
+function Card:bb_counter_apply(counter_type, number, operation, no_override)
     if operation and operation ~= "add" and operation ~= "mult" then
         print("no valid operation given, will default to addition")
     elseif not operation then
@@ -16,11 +16,10 @@ function Card:set_counter(counter_type, number, operation, no_override)
         }
     end
 
-
-
-    
     if not self.counter or (self.counter ~= counter_type) then
-        -- Cleanse 
+        -- Cleanse
+        self:bb_remove_counter()
+
         self.counter_config = {
             counter_num = 0,
             counter_num_ui = 0
@@ -29,6 +28,32 @@ function Card:set_counter(counter_type, number, operation, no_override)
 
         -- Set new counter type
         self.counter = counter_type
+
+        local y_val = -1
+        if (self.ability.set == 'Default' or self.ability.set =='Enhanced') then
+            y_val = 1
+        end
+        self.children.counter_ui_box = UIBox{
+            definition = create_UIBbox_counter_tooltip(self),
+            config = {
+                align = 'cm',
+                offset ={x=-0.65,y=y_val}, 
+                parent = self,
+                bond = 'Strong',
+            },
+            states = {
+                collide = {can = false},
+                drag = {can = true}
+            }
+        }
+
+        -- Copy config table from template to _object
+        self.ability.counter = {}
+        if counter_type then
+            for _key, _value in pairs(counter_type.config) do
+                self.ability.counter[_key] = _value
+            end
+        end
 
         -- Add_counter action
         local obj = self.counter
@@ -61,16 +86,11 @@ function Card:set_counter(counter_type, number, operation, no_override)
 
 end
 
-function Card:increment_counter(number)
+function Card:bb_increment_counter(number)
     if self.counter then
         
         self.counter_config.counter_num = math.min(self.counter_config.counter_num + number, self.counter.config.cap or 99)
-        print(self.counter.config.cap)
-        print(self.counter.config.cap or 99)
-        print(math.min(17, 9))
-        print(math.min(8, 9))
-        print(math.min(self.counter_config.counter_num + number, self.counter.config.cap or 99))
-        
+
         --Counter Increment action
         local obj = self.counter
         if obj.increment and type(obj.increment) == 'function' then
@@ -85,7 +105,7 @@ function Card:increment_counter(number)
             self:juice_up()
             self.counter_config.counter_num_ui = math.min(self.counter_config.counter_num_ui + number, self.counter.config.cap or 99)
             if self.counter_config.counter_num_ui <= 0 then
-                self:remove_counter()
+                self:bb_remove_counter()
             end
         return true end }))
 
@@ -93,25 +113,30 @@ function Card:increment_counter(number)
     end
 end
 
-function Card:remove_counter()
+function Card:bb_remove_counter()
     -- Remove Counter Action
-    local obj = self.counter
-    if obj.remove_counter and type(obj.remove_counter) == 'function' then
-    	local o = obj:remove_counter(self)
-    	if o then
-            if not o.card then o.card = self end
-            return o
+    if self.counter then
+        local obj = self.counter
+        if obj.remove_counter and type(obj.remove_counter) == 'function' then
+            local o = obj:remove_counter(self)
+            if o then
+                if not o.card then o.card = self end
+                return o
+            end
+        end
+
+        self.counter = nil
+        self.counter_config = {
+            counter_num = 0,
+            counter_num_ui = 0
+        }
+        if self.children.counter_ui_box then
+            self.children.counter_ui_box = nil
         end
     end
-
-    self.counter = nil
-    self.counter_config = {
-        counter_num = 0,
-        counter_num_ui = 0
-    }
 end
 
-function Card:calculate_counter(context)
+function Card:bb_calculate_counter(context)
     -- local obj = G.P_COUNTERS[self.counter] or {}
     local obj = self.counter
     if obj.calculate and type(obj.calculate) == 'function' then

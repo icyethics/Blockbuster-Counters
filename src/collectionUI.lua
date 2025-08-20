@@ -7,7 +7,7 @@ function create_UIBox_counters()
         center = 'c_base',
         h_mod = 1.03,
         modify_card = function(card, center)
-            card:set_counter(center, 1)
+            card:bb_counter_apply(center, 1)
         end,
     })
 end

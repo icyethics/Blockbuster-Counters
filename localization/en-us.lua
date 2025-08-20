@@ -1,6 +1,8 @@
 return {
     descriptions = {
         Counter = {
+
+            -- Score counters
             bbcount_mult_counter = {
                 name = "Mult Counter",
                 text = {
@@ -28,6 +30,8 @@ return {
                     "per Counter",
                 }
             },
+
+            -- Beneficial Counters
             bbcount_retrigger_counter = {
                 name = "Retrigger Counter",
                 text = {
@@ -46,6 +50,73 @@ return {
                     "per Counter"
                 }
             },
+
+            -- Detrimental Counters
+            bbcount_stun_counter = {
+                name = "Stun Counter",
+                text = {
+                    "{C:attention}Ticks Down 1",
+                    "{C:attention}after hand is played",
+                    " ",
+                    "Debuffed while this has",
+                    "any counters"
+                }
+            },
+
+            -- Status Counters
+            bbcount_burn_counter = {
+                name = "Burn Counter",
+                text = {
+                    "{C:attention}Ticks Up 1",
+                    " ",
+                    "Has a {C:green}1 in 10{}",
+                    "chance to {C:red}self-destruct"
+                }
+            },
+            bbcount_frost_counter = {
+                name = "Frost Counter",
+                text = {
+                    "{C:attention}Ticks Down 1",
+                    " ",
+                    "Halves given score",
+                    "while this has any",
+                    "Counters"
+                }
+            },
+            bbcount_paralysis_counter = {
+                name = "Paralysis Counter",
+                text = {
+                    "{C:attention}Ticks Down 1",
+                    " ",
+                    "Has a {C:green}1 in 10{} chance",
+                    "to not trigger",
+                    "per Counter"
+                }
+            },
+            bbcount_sleep_counter = {
+                name = "Sleep Counter",
+                text = {
+                    "{C:attention}Ticks Down 1",
+                    "{C:attention}1 in Total Counters (#1#) chance",
+                    "to clear all Counters",
+                    " ",
+                    "Debuffed while this",
+                    "has any counters",
+    
+                }
+            },
+            bbcount_drowsy_counter = {
+                name = "Drowsy Counter",
+                text = {
+                    "{C:attention}Ticks Up 1",
+                    " ",
+                    "{C:green}1 in 10{} chance per Counter",
+                    "to convert into",
+                    "Sleep counters"
+                }
+            }
+
+            -- Score Counters
         }
     },
     misc = {
@@ -56,8 +127,8 @@ return {
                 "Counters decrease by 1 when they",
                 "are triggered"
             },
-            bbcount_counter = "Counter"
-            
+            bbcount_counter = "Counter",
+            bb_paralysis = "Paralyzed!"
         },
     }
 }

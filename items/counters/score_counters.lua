@@ -8,9 +8,11 @@ BlockbusterCounters.Counter {
     pos = {x = 0, y = 2},
     calculate = function(self, card, context)
         if context.main_scoring or context.joker_main then
-            card:increment_counter(-1)
+            local return_val = card.counter_config.counter_num * self.config.mult
+            card:bb_increment_counter(-1)
+            
             return {
-                mult = card.counter_config.counter_num + self.config.mult
+                mult = return_val
             }
         end
     end,
@@ -39,9 +41,10 @@ BlockbusterCounters.Counter {
     pos = {x = 1, y = 2},
     calculate = function(self, card, context)
         if context.main_scoring or context.joker_main  then
-            card:increment_counter(-1)
+            local return_val = card.counter_config.counter_num * self.config.chips
+            card:bb_increment_counter(-1)
             return {
-                chips = card.counter_config.counter_num + self.config.chips
+                chips = return_val
             }
         end
     end,
@@ -69,10 +72,11 @@ BlockbusterCounters.Counter {
     },
     pos = {x = 2, y = 2},
     calculate = function(self, card, context)
-        if context.main_scoring or context.joker_main  then
-            card:increment_counter(-1)
+        if context.main_scoring or context.joker_main then
+            local return_val = 1 + (card.counter_config.counter_num * 0.1)
+            card:bb_increment_counter(-1)
             return {
-                x_mult = 1 + (card.counter_config.counter_num * 0.1)
+                x_mult = return_val
             }
         end
     end,

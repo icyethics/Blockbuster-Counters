@@ -28,9 +28,9 @@ SMODS.Keybind({
                     end
 
                     if _next == 1 then
-                        _card:set_counter(nil, 0)
+                        _card:bb_counter_apply(nil, 0)
                     else
-                        _card:set_counter(counters[_next], 1)
+                        _card:bb_counter_apply(counters[_next], 1)
                     end
                     break
                 end
@@ -45,10 +45,9 @@ SMODS.Keybind({
     held_keys = { "ralt" },
     event = 'pressed',
     action = function(self)
-        print("triggered <")
         if G and G.CONTROLLER and G.CONTROLLER.hovering.target and G.CONTROLLER.hovering.target:is(Card) then
             local _card = G.CONTROLLER.hovering.target
-            _card:increment_counter(1)
+            _card:bb_increment_counter(1)
         end
     end
 })
@@ -58,10 +57,9 @@ SMODS.Keybind({
     held_keys = { "lalt" },
     event = 'pressed',
     action = function(self)
-        print("triggered >")
         if G and G.CONTROLLER and G.CONTROLLER.hovering.target and G.CONTROLLER.hovering.target:is(Card) then
             local _card = G.CONTROLLER.hovering.target
-            _card:increment_counter(-1)
+            _card:bb_increment_counter(-1)
         end
     end
 })

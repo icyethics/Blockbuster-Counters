@@ -11,7 +11,7 @@ SMODS.current_mod.optional_features = {
 -- Read in Atlases
 local atlases = 
 {
-    {'blockbuster_counters', 71, 95, 'bbcount_counters.png'},
+    {'blockbuster_counters', 73, 97, 'bbcount_counters.png'},
     {'modicon', 32, 32, 'modicon.png'}
 }
 
