@@ -1,5 +1,5 @@
 BlockbusterCounters.Counter {
-    key = "poison_counter",
+    key = "poison",
     prefix_config = {key = { mod = false}},
     order = 6,
     atlas = 'blockbuster_counters',
@@ -17,7 +17,7 @@ BlockbusterCounters.Counter {
         }
     end,
     calculate = function(self, card, context)
-        if context.main_scoring or context.joker_main then
+        if (context.main_scoring and context.cardarea == G.play) or context.joker_main then
             local mult = mult * (card.counter_config.counter_num * (self.config.percentage))
             local chips = hand_chips * (card.counter_config.counter_num * (self.config.percentage))
             card:bb_increment_counter(-1)
@@ -36,7 +36,7 @@ BlockbusterCounters.Counter {
 }
 
 BlockbusterCounters.Counter {
-    key = "stun_counter",
+    key = "stun",
     prefix_config = {key = { mod = false}},
     order = 8,
     atlas = 'blockbuster_counters',
@@ -71,7 +71,7 @@ BlockbusterCounters.Counter {
 
 
 BlockbusterCounters.Counter {
-    key = "debt_counter",
+    key = "debt",
     prefix_config = {key = { mod = false}},
     order = 7,
     atlas = 'blockbuster_counters',
@@ -89,7 +89,7 @@ BlockbusterCounters.Counter {
     end,
 
     calculate = function(self, card, context)
-        if context.main_scoring or context.joker_main then
+        if (context.main_scoring and context.cardarea == G.play) or context.joker_main then
             local return_val = card.counter_config.counter_num + self.config.money
             card:bb_increment_counter(-1)
             return {

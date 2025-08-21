@@ -1,5 +1,5 @@
 BlockbusterCounters.Counter {
-    key = "burn_counter",
+    key = "burn",
     prefix_config = {key = { mod = false}},
     order = 6,
     atlas = 'blockbuster_counters',
@@ -18,7 +18,7 @@ BlockbusterCounters.Counter {
         }
     end,
     calculate = function(self, card, context)
-        if context.joker_main or context.main_scoring then
+        if (context.main_scoring and context.cardarea == G.play) or context.main_scoring then
             if SMODS.pseudorandom_probability(card, 'bb_fire', card.counter_config.counter_num, 10, "card_destruction") then
                 card.marked_to_destroy_by_fire_counter = true
             else
@@ -39,7 +39,7 @@ BlockbusterCounters.Counter {
 }
 
 BlockbusterCounters.Counter {
-    key = "frost_counter",
+    key = "frost",
     prefix_config = {key = { mod = false}},
     order = 8,
     atlas = 'blockbuster_counters',
@@ -57,7 +57,7 @@ BlockbusterCounters.Counter {
     end,
 
     calculate = function(self, card, context)
-        if context.main_scoring or context.joker_main then
+        if (context.main_scoring and context.cardarea == G.play) or context.joker_main then
             card:bb_increment_counter(-1)
         end
     end,
@@ -74,7 +74,7 @@ BlockbusterCounters.Counter {
 
 
 BlockbusterCounters.Counter {
-    key = "paralysis_counter",
+    key = "paralysis",
     prefix_config = {key = { mod = false}},
     order = 7,
     atlas = 'blockbuster_counters',
@@ -117,7 +117,7 @@ BlockbusterCounters.Counter {
 }
 
 BlockbusterCounters.Counter {
-    key = "sleep_counter",
+    key = "sleep",
     prefix_config = {key = { mod = false}},
     order = 7,
     atlas = 'blockbuster_counters',
@@ -155,7 +155,7 @@ BlockbusterCounters.Counter {
 }
 
 BlockbusterCounters.Counter {
-    key = "drowsy_counter",
+    key = "drowsy",
     prefix_config = {key = { mod = false}},
     order = 7,
     atlas = 'blockbuster_counters',
@@ -173,7 +173,7 @@ BlockbusterCounters.Counter {
     end,
 
     calculate = function(self, card, context)
-        if context.main_scoring or context.joker_main then
+        if (context.main_scoring and context.cardarea == G.play) or context.joker_main then
             if SMODS.pseudorandom_probability(card, 'bb_drowsy', card.counter_config.counter_num, self.config.chance, "card_transform") then
                 card:bb_counter_apply("counter_bbcount_sleep_counter", card.counter_config.counter_num)
             else

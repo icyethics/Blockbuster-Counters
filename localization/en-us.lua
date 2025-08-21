@@ -1,9 +1,8 @@
 return {
     descriptions = {
         Counter = {
-
             -- Score counters
-            bbcount_mult_counter = {
+            counter_mult = {
                 name = "Mult Counter",
                 text = {
                     "{C:attention}Ticks Down 1",
@@ -12,7 +11,7 @@ return {
                     "per Counter",
                 }
             },
-            bbcount_chip_counter = {
+            counter_chip = {
                 name = "Mult Counter",
                 text = {
                     "{C:attention}Ticks Down 1",
@@ -21,7 +20,7 @@ return {
                     "per Counter",
                 }
             },
-            bbcount_xmult_counter = {
+            counter_xmult = {
                 name = "xMult Counter",
                 text = {
                     "{C:attention}Ticks Down 1",
@@ -32,7 +31,7 @@ return {
             },
 
             -- Beneficial Counters
-            bbcount_retrigger_counter = {
+            counter_retrigger = {
                 name = "Retrigger Counter",
                 text = {
                     "{C:attention}Ticks Down 1",
@@ -41,34 +40,7 @@ return {
                     "per Counter"
                 }
             },
-            counter_bbcount_retrigger_counter = {
-                name = "Retrigger Counter (Yes mod / yes class)",
-                text = {
-                    "{C:attention}Ticks Down 1",
-                    " ",
-                    "Retrigger {C:attention}#1#{} time",
-                    "per Counter"
-                }
-            },
-            retrigger_counter = {
-                name = "Retrigger Counter (No mod / no class)",
-                text = {
-                    "{C:attention}Ticks Down 1",
-                    " ",
-                    "Retrigger {C:attention}#1#{} time",
-                    "per Counter"
-                }
-            },
-            counter_retrigger_counter = {
-                name = "Retrigger Counter (No mod / yes class)",
-                text = {
-                    "{C:attention}Ticks Down 1",
-                    " ",
-                    "Retrigger {C:attention}#1#{} time",
-                    "per Counter"
-                }
-            },
-            bbcount_money_counter = {
+            counter_money = {
                 name = "Money Counter",
                 text = {
                     "{C:attention}Ticks Down 1",
@@ -77,9 +49,28 @@ return {
                     "per Counter"
                 }
             },
+            counter_investment = {
+                name = "Investment Counter",
+                text = {
+                    "{C:attention}Ticks Down 1",
+                    " ",
+                    "Lose $1 per Counter applied",
+                    "Gain {C:money}$#1#{}",
+                    "per Counter"
+                }
+            },
 
             -- Detrimental Counters
-            bbcount_stun_counter = {
+            counter_poison = {
+                name = "Poison Counter",
+                text = {
+                    "{C:attention}Ticks Down 1",
+                    " ",
+                    "Reduce {C:chips}Chips{} & {C:mult}Mult",
+                    "by {C:attention}#1#%{} per Counter"
+                }
+            },
+            counter_stun = {
                 name = "Stun Counter",
                 text = {
                     "{C:attention}Ticks Down 1",
@@ -89,9 +80,18 @@ return {
                     "any counters"
                 }
             },
+            counter_debt = {
+                name = "Debt Counter",
+                text = {
+                    "{C:attention}Ticks Down 1",
+                    " ",
+                    "Lose {C:money}$#1#{}",
+                    "per Counter"
+                }
+            },
 
             -- Status Counters
-            bbcount_burn_counter = {
+            counter_burn = {
                 name = "Burn Counter",
                 text = {
                     "{C:attention}Ticks Up 1",
@@ -100,7 +100,7 @@ return {
                     "chance to {C:red}self-destruct"
                 }
             },
-            bbcount_frost_counter = {
+            counter_frost = {
                 name = "Frost Counter",
                 text = {
                     "{C:attention}Ticks Down 1",
@@ -110,7 +110,7 @@ return {
                     "Counters"
                 }
             },
-            bbcount_paralysis_counter = {
+            counter_paralysis = {
                 name = "Paralysis Counter",
                 text = {
                     "{C:attention}Ticks Down 1",
@@ -120,7 +120,7 @@ return {
                     "per Counter"
                 }
             },
-            bbcount_sleep_counter = {
+            counter_sleep = {
                 name = "Sleep Counter",
                 text = {
                     "{C:attention}Ticks Down 1",
@@ -132,7 +132,7 @@ return {
     
                 }
             },
-            bbcount_drowsy_counter = {
+            counter_drowsy = {
                 name = "Drowsy Counter",
                 text = {
                     "{C:attention}Ticks Up 1",
@@ -142,8 +142,6 @@ return {
                     "Sleep counters"
                 }
             }
-
-            -- Score Counters
         }
     },
     misc = {
