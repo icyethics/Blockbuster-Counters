@@ -3,9 +3,14 @@ BlockbusterCounters.mod_dir = ''..SMODS.current_mod.path
 
 BlockbusterCounters_config = SMODS.current_mod.config
 
-SMODS.current_mod.optional_features = {
-	retrigger_joker = true,
-	post_trigger = true,
+-- Setting variables to use for other mods to test whether this mod is loaded
+if not Blockbuster then
+    Blockbuster = {}
+    Blockbuster.counters = true
+end
+
+BlockbusterCounters.disabledCounters = {
+    
 }
 
 -- Read in Atlases

@@ -136,7 +136,7 @@ BlockbusterCounters.Counter {
     calculate = function(self, card, context)
         if context.after_debuff and context.ignore_debuff then
             if SMODS.pseudorandom_probability(card, 'bb_sleep', 1, card.counter_config.counter_num, "card_debuff") then
-                card:bb_remove_counter()
+                card:bb_remove_counter("counter_effect")
             else
                 card:bb_increment_counter(-1)
             end

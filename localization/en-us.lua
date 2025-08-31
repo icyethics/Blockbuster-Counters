@@ -12,7 +12,7 @@ return {
                 }
             },
             counter_chip = {
-                name = "Mult Counter",
+                name = "Chips Counter",
                 text = {
                     "{C:attention}Ticks Down 1",
                     " ",
