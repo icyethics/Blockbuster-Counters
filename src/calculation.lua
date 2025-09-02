@@ -45,7 +45,7 @@ function Card.calculate_joker(self,context)
 end
 
 -- Function that handles that general behaviour
-function BlockbusterCounters.setpowerchange(card, source, powerchange)
+function Blockbuster.Counters.setpowerchange(card, source, powerchange)
     if not card.ability.output_powerchange then
         card.ability.output_powerchange = {}
     end
@@ -81,9 +81,20 @@ function Card:get_chip_bonus()
         
         for _source, _num in pairs(self.ability.output_powerchange) do
             _factor = _factor * _num
-            print(_factor)
+
         end
     end
 
     return ret * _factor
+end
+
+local o_cie = SMODS.calculate_individual_effect
+function SMODS.calculate_individual_effect(effect, scored_card, key, amount, from_edition)
+    local ret = o_cie(effect, scored_card, key, amount, from_edition)
+
+    if (key == 'bb_counter_number_change') then
+        return {[key] = amount}
+    end
+
+    return ret
 end

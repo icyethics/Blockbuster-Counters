@@ -1,15 +1,16 @@
-BlockbusterCounters = {}
-BlockbusterCounters.mod_dir = ''..SMODS.current_mod.path
-
-BlockbusterCounters_config = SMODS.current_mod.config
-
 -- Setting variables to use for other mods to test whether this mod is loaded
 if not Blockbuster then
     Blockbuster = {}
-    Blockbuster.counters = true
 end
 
-BlockbusterCounters.disabledCounters = {
+Blockbuster.Counters = {}
+Blockbuster.Counters.mod_dir = ''..SMODS.current_mod.path
+
+Blockbuster.Counters_config = SMODS.current_mod.config
+
+
+
+Blockbuster.Counters.disabledCounters = {
     
 }
 
@@ -30,7 +31,7 @@ for _index, _object in ipairs(atlases) do
 end
 
 -- Read in Files
-function BlockbusterCounters.load_file(file_address)
+function Blockbuster.Counters.load_file(file_address)
     local helper, load_error = SMODS.load_file(file_address)
     if load_error then
         sendDebugMessage ("The error is: "..load_error)
@@ -45,9 +46,9 @@ local _list_of_folders = {
 }
 
 for _index, _folder in ipairs(_list_of_folders) do
-    local files = NFS.getDirectoryItems(BlockbusterCounters.mod_dir .. _folder)
+    local files = NFS.getDirectoryItems(Blockbuster.Counters.mod_dir .. _folder)
     for _, _filename in ipairs(files) do
-        BlockbusterCounters.load_file(_folder .. "/" .. _filename)
+        Blockbuster.Counters.load_file(_folder .. "/" .. _filename)
     end
 end
 

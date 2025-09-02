@@ -1,7 +1,7 @@
 if SMODS.optional_features.retrigger_joker then
-    BlockbusterCounters.Counter {
+    Blockbuster.Counters.Counter {
         key = "retrigger",
-        prefix_config = {key = { mod = false}},
+        prefix_config = {key = { mod = false, atlas = false}},
         order = 4,
         atlas = 'blockbuster_counters',
         pos = {x = 0, y = 0},
@@ -19,7 +19,7 @@ if SMODS.optional_features.retrigger_joker then
         calculate = function(self, card, context)
             if card.ability.set ~= 'Joker' 
             and context.repetition then
-                local _retriggers = card.counter_config.counter_num * self.config.retriggers
+                local _retriggers = card.ability.counter.counter_num * self.config.retriggers
                 card:bb_increment_counter(-1)
 
                 return {
@@ -32,7 +32,7 @@ if SMODS.optional_features.retrigger_joker then
             context.other_card ~= self then
                 
                 
-                local _retriggers = card.counter_config.counter_num * self.config.retriggers
+                local _retriggers = card.ability.counter.counter_num * self.config.retriggers
                 card:bb_increment_counter(-1)
                 
                 return {
@@ -50,9 +50,9 @@ if SMODS.optional_features.retrigger_joker then
     }
 end
 
-BlockbusterCounters.Counter {
+Blockbuster.Counters.Counter {
     key = "investment",
-    prefix_config = {key = { mod = false}},
+    prefix_config = {key = { mod = false, atlas = false}},
     order = 5,
     atlas = 'blockbuster_counters',
     pos = {x = 1, y = 0},
@@ -69,7 +69,7 @@ BlockbusterCounters.Counter {
     end,
     calculate = function(self, card, context)
         if (context.main_scoring and context.cardarea == G.play) or context.joker_main then
-            local return_val = card.counter_config.counter_num * self.config.money
+            local return_val = card.ability.counter.counter_num * self.config.money
             card:bb_increment_counter(-1)
             return {
                 dollars = return_val
@@ -79,14 +79,17 @@ BlockbusterCounters.Counter {
     increment = function(self, card, number)
     end,
     add_counter = function(self, card, number)
+        if self.added_to_deck then
+            ease_dollars(-number)
+        end
     end,
     remove_counter = function(self, card)
     end,
 }
 
-BlockbusterCounters.Counter {
+Blockbuster.Counters.Counter {
     key = "money",
-    prefix_config = {key = { mod = false}},
+    prefix_config = {key = { mod = false, atlas = false}},
     order = 5,
     atlas = 'blockbuster_counters',
     pos = {x = 3, y = 2},
@@ -103,7 +106,7 @@ BlockbusterCounters.Counter {
     end,
     calculate = function(self, card, context)
         if (context.main_scoring and context.cardarea == G.play) or context.joker_main then
-            local return_val = card.counter_config.counter_num * self.config.money
+            local return_val = card.ability.counter.counter_num * self.config.money
             card:bb_increment_counter(-1)
             return {
                 dollars = return_val
