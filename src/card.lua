@@ -60,7 +60,7 @@ function Card:bb_increment_counter(number, first_application)
     if self.counter then
 
         if not first_application then
-            SMODS.calculate_context({counter_incremented = true, card = self, counter_type = self.counter, number = number})
+            SMODS.calculate_context({bb_counter_incremented = true, card = self, counter_type = self.counter, number = number})
         end
         
         self.ability.counter.counter_num = math.min(self.ability.counter.counter_num + number, self.counter.config.cap or 99)
@@ -92,7 +92,7 @@ function Card:bb_remove_counter(removal_method)
     if self.counter then
         local obj = self.counter
 
-        SMODS.calculate_context({counter_removed = true, card = self, counter_type = self.counter, removal_method = removal_method or "unknown"})
+        SMODS.calculate_context({bb_counter_removed = true, card = self, counter_type = self.counter, removal_method = removal_method or "unknown"})
 
         if obj.remove_counter and type(obj.remove_counter) == 'function' then
             local o = obj:remove_counter(self)

@@ -97,7 +97,8 @@ return {
                     "{C:attention}Ticks Up 1",
                     " ",
                     "Has a {C:green}1 in 10{}",
-                    "chance to {C:red}self-destruct"
+                    "chance to {C:red}self-destruct",
+                    "per Counter"
                 }
             },
             counter_frost = {
