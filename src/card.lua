@@ -5,6 +5,14 @@ function Card:bb_counter_apply(counter_type, number, no_override)
         counter_type = G.P_COUNTERS[counter_type]
     end
 
+    if counter_type and counter_type.joker_only and self.ability.set ~= 'Joker' then
+        return 'joker_only'
+    end
+
+    if counter_type and  counter_type.pcard_only and (self.ability.set ~= 'Default' or self.ability.set =='Enhanced') then
+        return 'pcard_only'
+    end
+
     if no_override and self.counter and self.counter ~= nil then
         return {
 

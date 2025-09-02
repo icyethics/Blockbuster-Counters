@@ -12,6 +12,8 @@ Blockbuster.Counters.Counter =  SMODS.GameObject:extend {
 
     discovered = false,
     badge_colour = HEX('7e3456'),
+    joker_only = false,
+    pcard_only = false,
     required_params = {
         'key',
         'pos',

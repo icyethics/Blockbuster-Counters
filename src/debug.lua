@@ -19,20 +19,28 @@ SMODS.Keybind({
     action = function(self)
         if G and G.CONTROLLER and G.CONTROLLER.hovering.target and G.CONTROLLER.hovering.target:is(Card) then
             local _card = G.CONTROLLER.hovering.target
-
+            local _allowed_increment = false
             for _i, _counter in ipairs(GetCounters()) do
-                if (_card.counter and _card.counter.key or "None") == _counter then
+                
+                if ((_card.counter and _card.counter.key or "None") == _counter) or _allowed_increment then
                     local _next = _i + 1
                     if _next > #counters then
                         _next = 1
                     end
 
+                    local _return = nil
                     if _next == 1 then
-                        _card:bb_counter_apply(nil, 0)
+                        _return = _card:bb_counter_apply(nil, 0)
                     else
-                        _card:bb_counter_apply(counters[_next], 1)
+                        _return = _card:bb_counter_apply(counters[_next], 1)
                     end
-                    break
+
+                    if _return == nil then
+                        _allowed_increment = false
+                        break
+                    else
+                        _allowed_increment = true
+                    end
                 end
             end
         end
