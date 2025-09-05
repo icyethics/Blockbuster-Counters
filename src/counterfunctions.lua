@@ -64,6 +64,7 @@ function Blockbuster.Counters.get_counter_num(card)
     if card.counter then
         return card.ability.counter.counter_num
     end
+    return 0
 end
 
 function Blockbuster.Counters.is_counter_of_class(card, counter_class_table)
