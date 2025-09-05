@@ -16,6 +16,9 @@ if SMODS.optional_features.retrigger_joker then
                 }
             }
         end,
+        counter_class = {
+            "beneficial",
+        },
         calculate = function(self, card, context)
             if card.ability.set ~= 'Joker' 
             and context.repetition then
@@ -60,6 +63,10 @@ Blockbuster.Counters.Counter {
         money = 1,
         cap = 9,
     },
+    counter_class = {
+        "neutral",
+        "economy"
+    },
     loc_vars = function(self, info_queue, card)
         return {
             vars = {
@@ -96,6 +103,10 @@ Blockbuster.Counters.Counter {
     config = {
         money = 1,
         cap = 9,
+    },
+    counter_class = {
+        "beneficial",
+        "economy"
     },
     loc_vars = function(self, info_queue, card)
         return {

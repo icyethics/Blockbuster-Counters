@@ -86,3 +86,14 @@ When a counter is removed in anyway
     counter_type = Blockbuster.Counter object,
     removal_method = "tick_down", "counter_effect", "overwrite", or custom string
 }
+
+
+List of Counter classes:
+"beneficial"
+"neutral"
+"detrimental"
+"status"
+"score
+"economy"
+"debuff"
+"value_manip"

@@ -30,9 +30,9 @@ SMODS.Keybind({
 
                     local _return = nil
                     if _next == 1 then
-                        _return = _card:bb_counter_apply(nil, 0)
+                        _return = _card:bb_counter_apply(nil, 0, nil, true)
                     else
-                        _return = _card:bb_counter_apply(counters[_next], 1)
+                        _return = _card:bb_counter_apply(counters[_next], 1, nil, true)
                     end
 
                     if _return == nil then
