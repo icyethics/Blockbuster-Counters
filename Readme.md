@@ -5,7 +5,7 @@ Blockbuster is a series of API mods that offer features from the Balatro Goes Ki
 Blockbuster Mods:
 - Balatro Goes Kino (Source Content mod)
 - Blockbuster: Counters 
-- Blockbuster: Spellcasting (Not Yet Released)
+- [Blockbuster: Spellcasting](https://github.com/icyethics/Blockbuster-Spellcasting)
 - Blockbuster: Confections (Not Yet Released)
 - Blockbuster: Abduction (Not Yet Released)
 - Blockbuster: Value Manipulation (Not Yet Released)
